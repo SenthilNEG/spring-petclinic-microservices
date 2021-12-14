@@ -99,7 +99,7 @@ class OwnerController {
 		getOwnerAdressDetails(keepLooping,timeStart);		
 	}
 	
-	Private void getOwnerAdressDetails(boolean keepLooping, long timeStart){
+	private void getOwnerAdressDetails(boolean keepLooping, long timeStart){
 		while(keepLooping){
 			long timeNow = System.currentTimeMillis();			
 			if((timeNow - timeStart) >= 5000 || (timeNow - timeStart) >= (300 * 1000)){
