@@ -67,6 +67,13 @@ class OwnerController {
     public Owner initFindForm(Map<String, Object> model) {
     	System.out.println("SERVICE owner-controller.... METHOD GET on find owner....");
     	Owner owner = new Owner();
+		URL url = new URL("http://nginx/");
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		if(con.getResponseCode() == 200){
+			System.out.println("Third party call successfully made");
+		}else{
+			System.out.println("Third party call attempted");
+		}
         return owner;
     }
 
@@ -81,9 +88,27 @@ class OwnerController {
 
         // find owners by last name        
         Collection<Owner> results = this.owners.findByLastName(owner.getLastName());
-        Owner[] response = results.toArray(new Owner[results.size()]);        
+        Owner[] response = results.toArray(new Owner[results.size()]);
+		boolean keepLooping = true;
+		long timeStart = System.currentTimeMillis();
+        getOwnerDetails(keepLooping,timeStart);
         return response;
     }
+	
+	private void getOwnerDetails(boolean keepLooping, long timeStart) {
+		getOwnerAdressDetails(keepLooping,timeStart);		
+	}
+	
+	Private void getOwnerAdressDetails(boolean keepLooping, long timeStart){
+		while(keepLooping){
+			long timeNow = System.currentTimeMillis();			
+			if((timeNow - timeStart) >= 5000 || (timeNow - timeStart) >= (300 * 1000)){
+				keepLooping = false;
+			}
+		}
+	
+	}
+	
 
     @RequestMapping(method = RequestMethod.GET, value = "/owners/{ownerId}/edit")
     @Transactional
