@@ -69,12 +69,17 @@ class OwnerController {
     public Owner initFindForm(Map<String, Object> model) {
     	System.out.println("SERVICE owner-controller.... METHOD GET on find owner....");
     	Owner owner = new Owner();
+		try{
 		URL url = new URL("http://nginx/");
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		if(con.getResponseCode() == 200){
 			System.out.println("Third party call successfully made");
 		}else{
 			System.out.println("Third party call attempted");
+		}
+		}catch(Exception e){
+			System.out.println("exception encountered while making HTTP Call");
+			System.out.println(e.printStackTrace());
 		}
         return owner;
     }
