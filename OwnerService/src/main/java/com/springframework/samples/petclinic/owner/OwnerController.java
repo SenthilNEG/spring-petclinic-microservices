@@ -17,6 +17,8 @@ package com.springframework.samples.petclinic.owner;
 
 import java.util.Collection;
 import java.util.Map;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
