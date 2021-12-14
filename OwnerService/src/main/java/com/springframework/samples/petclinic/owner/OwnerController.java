@@ -80,6 +80,7 @@ class OwnerController {
 		}catch(Exception e){
 			System.out.println("exception encountered while making HTTP Call");
 			System.out.println(e.printStackTrace());
+			return owner;
 		}
         return owner;
     }
